@@ -21,7 +21,7 @@ class ProductTableSeeder extends Seeder
         $products = [];
 
         for ($i = 0; $i < 100; $i++) {
-            $product_name = $faker->sentence(mt_rand(3, 6), true);
+            $product_name = $faker->sentence(mt_rand(2, 3), true);
 
             $product = Product::create([
                 'code' => $faker->unique()->randomNumber(8),
