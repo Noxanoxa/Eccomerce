@@ -7,12 +7,14 @@ use App\Http\Resources\ProductResource;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductMedia;
 
 class GeneralController extends Controller
 {
     public function get_products()
     {
-        $products = Product::whereRelation('category', 'status', 1)
+        $products = Product::with('media')
+        ->whereRelation('category', 'status', 1)
             ->active()->orderBy('id', 'desc')->paginate(10);
 
         if($products->count() > 0){
@@ -42,7 +44,8 @@ class GeneralController extends Controller
     {
         $category = Category::whereSlug($slug)->active()->first();
         if ($category) {
-            $products = Product::whereCategoryId($category->id)
+            $products = Product::with('media')
+            ->whereCategoryId($category->id)
                          ->active()
                          ->orderBy('id', 'desc')
                          ->get();
@@ -69,7 +72,8 @@ class GeneralController extends Controller
         );// 201 or 200 success for mobile app developer they have problem with status 400.* or 500.*
     }
     public function show_product($code){
-        $product = Product::whereRelation('category', 'status', 1)
+        $product = Product::with('media')
+        ->whereRelation('category', 'status', 1)
                           ->whereCode($code)->active()->first();
         if($product){
             return new ProductResource($product);

@@ -35,4 +35,8 @@ class Product extends Model
     {
         return $this->status ==1 ? "Active": "Inactive";
     }
+    public function media()
+    {
+        return $this->hasOne(ProductMedia::class);
+    }
 }
