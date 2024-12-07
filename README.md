@@ -60,7 +60,7 @@ Many more....
 3. Rename or copy ```.env.example``` file to ``.env``
 4. php artisan key:generate
 5. Set your database credentials in your ```.env``` file
-6. Import db file(```database/e-shop.sql```) into your database (```mysql,sql```)
+6. Import db file(```database/thegreatoflaravel.sql```) into your database (```mysql,sql```)
 7. ```npm install```
 8. ```npm run watch```
 9. run command[laravel file manager]:-  ```php artisan storage:link```
